@@ -225,6 +225,7 @@ Built an interactive Power BI dashboard with:
 * Category breakdowns (Sales / Quantity / Profit)
 * Demographic visuals (Age, Gender)
 * Time-of-day analysis (Morning/Afternoon/Evening)
+  ![VIEW](https://github.com/ARAFAH-LAWAL102/Retail-Sales-Analysis-with-SQL-and-Power-Bi/blob/main/Screenshot%202025-09-12%20105857.png)
 
 
 
@@ -261,5 +262,5 @@ SQL, Power BI , data cleaning, EDA, dashboard design, data storytelling
 
 
 
-EXEC sp_rename 'sales.quantiy', 'quantity', 'COLUMN';
+
 
