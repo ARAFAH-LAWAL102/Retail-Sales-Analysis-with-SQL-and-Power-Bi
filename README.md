@@ -1,10 +1,10 @@
 
 
-#  BM Stores Sales Performance Analysis – SQL + Excel Dashboard
+#  BM Stores Sales Performance Analysis – SQL + Power BI Dashboard
 
 ## Project Overview
 
-This project analyzes BM Stores’ sales data using **SQL** for data cleaning & querying and an **Excel dashboard** for visualization. The goal was to uncover trends in sales, profit, product performance, shipping, and customer behavior to support data-driven decisions.
+This project analyzes BM Stores’ sales data using **SQL** for data cleaning & querying and an **Power BI dashboard** for visualization. The goal was to uncover trends in sales, profit, product performance, shipping, and customer behavior to support data-driven decisions.
 
 ---
 
@@ -18,6 +18,7 @@ This project analyzes BM Stores’ sales data using **SQL** for data cleaning & 
 ---
 
 ##  Implementation
+## Data Cleaning and Preparation
 
 ### 1. Create database & import data
 
@@ -104,10 +105,10 @@ EXEC sp_rename 'sales.quantiy', 'quantity', 'COLUMN';
 
 ---
 
-## 📊 Exploratory Queries (common EDA examples)
+## Exploratory Data Analysis
 
 ```sql
--- i) Retrieve all columns for sales on a specific date
+-- i) Retrieve all columns for sales made on '2022-11-05’
 SELECT *
 FROM sales
 WHERE sale_date = '2022-11-05';
@@ -220,7 +221,7 @@ GROUP BY
 
 Built an interactive Power BI dashboard with:
 
-* KPI cards (Sales, Profit, Quantity, Avg Shipping Days)
+* KPI cards (Sales, Profit, Quantity)
 * Monthly trend charts for Sales and Profit
 * Category breakdowns (Sales / Quantity / Profit)
 * Demographic visuals (Age, Gender)
@@ -233,30 +234,36 @@ Built an interactive Power BI dashboard with:
 
 ## Key Insights
 * Top Category: Clothing generated the highest profit (₦143K) and quantity sold (1,780 units).
+* Top selling category: Electronic made highest sales (₦311K).
 
 * Sales Timing: Evening accounted for ₦572K in sales – the most profitable time shift.
 
 * Demographics: Age group 18–35 drove the highest revenue (₦366K).
 
-* Monthly Trend: Sales and profit spiked from August onward, indicating seasonal demand.
+* Monthly Trend: Sales and profit spiked from September onward, indicating seasonal demand.
 
 ---
 
 ##  Recommendations
 
-*Boost Evening Campaigns: Run more promotions in evening hours since they drive most sales.
+* Boost Evening Sales: Run more promotions in evening hours since they drive most sales.
 
 * Target Younger Customers: Offer loyalty rewards for 18–35 age group — they generate the most revenue.
 
-* Promote High-Margin Categories: Focus marketing on Clothing & Beauty products to sustain profit growth.
+* Promote High-Margin Categories: Focus marketing on Clothing & Electronic products to sustain profit growth.
 
-* Plan for Seasonal Demand: Prepare stock and campaigns ahead of August–December to maximize sales.
-*Upsell in Low-Quantity Categories: Encourage bundles or discounts for categories with lower quantity sold.
+* Plan for Seasonal Promotion: Prepare stock ahead of September–December to maximize sales.
+*Upsell in Low-Quantity Categories: Encourage bundles or discounts for categories with lower quantity sold(Beauty).
 ---
 
 ## 🛠 Tools & Skills
 
-SQL, Power BI , data cleaning, EDA, dashboard design, data storytelling
+**SQL,
+Power BI , 
+Data cleaning, 
+EDA, 
+Dashboard design, 
+Data storytelling**
 
 ---
 
