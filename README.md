@@ -1,10 +1,10 @@
 
 
-#  BM Stores Sales Performance Analysis – SQL + Power BI Dashboard
+#  Retail Store Sales Performance Analysis – SQL + Power BI Dashboard
 
 ## Project Overview
 
-This project analyzes BM Stores’ sales data using **SQL** for data cleaning & querying and an **Power BI dashboard** for visualization. The goal was to uncover trends in sales, profit, product performance, shipping, and customer behavior to support data-driven decisions.
+This project analyzes Retail sales data using **SQL** for data cleaning & querying and an **Power BI dashboard** for visualization. The goal was to uncover trends and answer business questions in sales, profit, product performance, shipping, and customer behavior to support data-driven decisions.
 
 ---
 
@@ -226,7 +226,7 @@ Built an interactive Power BI dashboard with:
 * Category breakdowns (Sales / Quantity / Profit)
 * Demographic visuals (Age, Gender)
 * Time-of-day analysis (Morning/Afternoon/Evening)
-  ![VIEW](https://github.com/ARAFAH-LAWAL102/Retail-Sales-Analysis-with-SQL-and-Power-Bi/blob/main/Screenshot%202025-09-12%20105857.png)
+  ![V](https://github.com/ARAFAH-LAWAL102/Retail-Sales-Analysis-with-SQL-and-Power-Bi/blob/main/Screenshot%202025-09-12%20105857.png)
 
 
 
