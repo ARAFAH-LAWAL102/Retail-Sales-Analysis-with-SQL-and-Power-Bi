@@ -44,7 +44,7 @@ Here is the [EDA SQL Script](https://github.com/ARAFAH-LAWAL102/Retail-Sales-Ana
 - Customer demographics  
 - Time-of-day performance  
 - Product performance visuals  
-
+![v](https://github.com/ARAFAH-LAWAL102/Retail-Sales-Analysis-with-SQL-and-Power-Bi/blob/main/Retail%20salaes%20db.png)
 ---
 
 ## Key Insights 
