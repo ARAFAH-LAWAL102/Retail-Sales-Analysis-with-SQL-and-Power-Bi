@@ -34,7 +34,7 @@ Analysis covered:
 - Time-of-day purchasing behavior  
 - Top customers by revenue  
 - Seasonal trends  
-
+Here is the [EDA SQL Script](https://github.com/ARAFAH-LAWAL102/Retail-Sales-Analysis-with-SQL-and-Power-Bi/blob/main/axia%20retailsales%20project.sql)
 ---
 
 ## 📊 Power BI Dashboard Features  
