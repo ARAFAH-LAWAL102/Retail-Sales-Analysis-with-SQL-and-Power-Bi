@@ -22,7 +22,7 @@ Key steps included:
 - Fixing data quality issues  
 - Running SQL queries for exploratory analysis  
 
-> **Full SQL scripts are stored in the `/SQL` folder.**
+Here is the [SQL Data Cleaning Script ](https://github.com/ARAFAH-LAWAL102/Retail-Sales-Analysis-with-SQL-and-Power-Bi/blob/main/axia%20retailsales%20data_cleaning.sql)
 
 ---
 
