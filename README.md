@@ -1,273 +1,73 @@
 
 
-#  Retail Store Sales Performance Analysis – SQL + Power BI Dashboard
+# Retail Store Sales Performance Analysis – SQL + Power BI
 
-## Project Overview
-
-This project analyzes Retail sales data using **SQL** for data cleaning & querying and an **Power BI dashboard** for visualization. The goal was to uncover trends and answer business questions in sales, profit, product performance, shipping, and customer behavior to support data-driven decisions.
-
----
-
-##  Project Goals
-
-* Clean & prepare the data
-* Perform EDA (Exploratory Data Analysis) via SQL
-* Build an interactive Power BI dashboard 
-* Communicate actionable recommendations to stakeholders
+## 📌 Project Overview  
+This project analyzes retail sales performance using **SQL** for data cleaning and exploration, and **Power BI** for interactive dashboard reporting. The goal is to uncover trends in sales, profit, customer behavior, product performance, and seasonal patterns to support business decisions.
 
 ---
 
-##  Implementation
-## Data Cleaning and Preparation
-
-### 1. Create database & import data
-
-```sql
-
-CREATE DATABASE RetailSales;
-GO
-```
-
-### 2. Data preview
-
-```sql
--- Preview the dataset
-SELECT * FROM sales;
-```
-
-### 3. Check for NULL values
-
-```sql
--- Check for NULLs in critical columns
-SELECT *
-FROM sales
-WHERE transactions_id IS NULL
-   OR sale_date IS NULL
-   OR sale_time IS NULL
-   OR customer_id IS NULL
-   OR gender IS NULL
-   OR age IS NULL
-   OR category IS NULL
-   OR quantity IS NULL
-   OR price_per_unit IS NULL
-   OR cogs IS NULL
-   OR total_sale IS NULL;
-```
-
-### 4. Handle NULLs 
-
-```sql
--- Delete rows with missing values
-DELETE FROM sales
-WHERE transactions_id IS NULL
-   OR sale_date IS NULL
-   OR sale_time IS NULL
-   OR customer_id IS NULL
-   OR gender IS NULL
-   OR age IS NULL
-   OR category IS NULL
-   OR quantity IS NULL
-   OR price_per_unit IS NULL
-   OR cogs IS NULL
-   OR total_sale IS NULL;
-```
-
-### 5. Check for duplicates
-
-```sql
--- Find duplicate transactions_id
-SELECT transactions_id, COUNT(*) AS count
-FROM sales
-GROUP BY transactions_id
-HAVING COUNT(*) > 1;
-```
-
-### 6. Remove duplicates
-
-```sql
-
-WITH Duplicate AS (
-  SELECT transactions_id,
-         ROW_NUMBER() OVER (PARTITION BY transactions_id ORDER BY transactions_id) AS RN
-  FROM sales
-)
-SELECT *
-FROM Duplicate
-WHERE RN > 1;
-```
-
-### 7. Rename column (fix typo)
-
-```sql
--- Rename column quantiy -> quantity (SQL Server example)
-EXEC sp_rename 'sales.quantiy', 'quantity', 'COLUMN';
-```
+## 🛠 Tools & Skills  
+- **SQL** – Data cleaning, EDA, querying  
+- **Power BI** – Dashboard design, DAX, data modeling  
+- **Data Cleaning** – Handling NULLs, duplicates, schema fixes  
+- **Data Storytelling** – Insights & recommendations  
 
 ---
 
-## Exploratory Data Analysis
+## 🧼 Data Preparation (SQL)  
+Key steps included:  
+- Creating the database and importing raw data  
+- Checking and removing NULLs and duplicates  
+- Fixing data quality issues  
+- Running SQL queries for exploratory analysis  
 
-```sql
--- i) Retrieve all columns for sales made on '2022-11-05’
-SELECT *
-FROM sales
-WHERE sale_date = '2022-11-05';
-```
-
-```sql
--- ii) Write a SQL query to retrieve all transactions where the category is 'Clothing' and the
-quantity sold is more than 4 in the month of Nov-2022
-SELECT *
-FROM sales
-WHERE category = 'Clothing'
-  AND quantity > 4
-  AND sale_date BETWEEN '2022-11-01' AND '2022-11-30';
-```
-
-```sql
--- iii) Total sales per category
-SELECT category,
-       SUM(total_sale) AS TotalSales
-FROM sales
-GROUP BY category;
-```
-
-```sql
--- iv) Average age of customers who purchased from 'Beauty'
-SELECT AVG(age) AS Average_age
-FROM sales
-WHERE category = 'Beauty';
-```
-
-```sql
--- v) Transactions where total_sale > 1000
-SELECT *
-FROM sales
-WHERE total_sale > 1000;
-```
-
-```sql
--- vi) Number of transactions by gender in each category
-SELECT gender,
-       category,
-       COUNT(transactions_id) AS No_of_Transactions
-FROM sales
-GROUP BY gender, category;
-```
-
-```sql
--- vii) Average sale per month
-SELECT MONTH(sale_date) AS Month,
-       AVG(total_sale) AS Avg_sales
-FROM sales
-GROUP BY MONTH(sale_date)
-ORDER BY Avg_sales DESC;
-```
-
-```sql
--- Best-selling month in each year
-WITH Monthlysales AS (
-  SELECT YEAR(sale_date) AS Year,
-         MONTH(sale_date) AS Month,
-         SUM(total_sale) AS Totalsales,
-         ROW_NUMBER() OVER (PARTITION BY YEAR(sale_date) ORDER BY SUM(total_sale) DESC) AS rn
-  FROM sales
-  GROUP BY YEAR(sale_date), MONTH(sale_date)
-)
-SELECT Year, Month, Totalsales
-FROM Monthlysales
-WHERE rn = 1;
-```
-
-```sql
--- viii) Top 5 customers by total sales 
-SELECT TOP 5 customer_id,
-       SUM(total_sale) AS TotalSales
-FROM sales
-GROUP BY customer_id
-ORDER BY TotalSales DESC;
-```
-
-```sql
--- ix) Number of unique customers per category
-SELECT category,
-       COUNT(DISTINCT customer_id) AS unique_customers
-FROM sales
-GROUP BY category;
-```
-
-```sql
--- x) Create time shifts and number of orders
-SELECT COUNT(*) AS No_of_orders,
-       CASE
-         WHEN sale_time < '12:00:00' THEN 'Morning'
-         WHEN sale_time BETWEEN '12:00:00' AND '17:00:00' THEN 'Afternoon'
-         WHEN sale_time > '17:00:00' THEN 'Evening'
-         ELSE 'Midnight'
-       END AS shift
-FROM sales
-GROUP BY
-       CASE
-         WHEN sale_time < '12:00:00' THEN 'Morning'
-         WHEN sale_time BETWEEN '12:00:00' AND '17:00:00' THEN 'Afternoon'
-         WHEN sale_time > '17:00:00' THEN 'Evening'
-         ELSE 'Midnight'
-       END;
-```
+> **Full SQL scripts are stored in the `/SQL` folder.**
 
 ---
 
-##  Dashboard (Power BI)
+## 🔍 Exploratory Data Analysis (SQL)  
+Analysis covered:  
+- Monthly sales trends  
+- Category performance (sales, profit, quantity)  
+- Customer demographics (age, gender)  
+- Time-of-day purchasing behavior  
+- Top customers by revenue  
+- Seasonal trends  
 
-Built an interactive Power BI dashboard with:
+---
 
-* KPI cards (Sales, Profit, Quantity)
-* Monthly trend charts for Sales and Profit
-* Category breakdowns (Sales / Quantity / Profit)
-* Demographic visuals (Age, Gender)
-* Time-of-day analysis (Morning/Afternoon/Evening)
-  ![V](https://github.com/ARAFAH-LAWAL102/Retail-Sales-Analysis-with-SQL-and-Power-Bi/blob/main/Screenshot%202025-09-12%20105857.png)
+## 📊 Power BI Dashboard Features  
+- KPI cards (Sales, Profit, Quantity)  
+- Monthly sales & profit trends  
+- Category breakdowns  
+- Customer demographics  
+- Time-of-day performance  
+- Product performance visuals  
+
+---
+
+## Key Insights 
+* **Profit Growth:** Profit increased by 105% vs 2024, with Clothing generating the highest profit (₦143K) and units sold (1,780), showing strong demand and high margins.
+* **Sales Growth:** Total sales grew 102% YoY, driven by Electronics, which recorded the highest sales value (₦311K), indicating strong revenue potential in this category. 
+* **Peak Sales Timing**: Evening generated the highest revenue (₦572K), highlighting this period as the prime window for promotions and targeted offers. 
+* **Customer Demographics:** The 18–35 age group produced ₦366K in revenue, confirming young adults as the primary customer segment to target for marketing and engagement. 
+* **Seasonality:** Sales and profit surged from September onward, revealing clear seasonal buying patterns that can inform stock planning and campaign timing. 
+---
+
+## ✅ Recommendations  
+- **Promote high-margin categories** such as Clothing and Electronics to sustain revenue growth.  
+- **Run campaigns during evening hours**, the period with the highest customer activity.  
+- **Target younger customers (18–35)** with personalized offers and loyalty programs.  
+- **Prepare inventory ahead of the September–December surge** to meet seasonal demand.  
+- **Upsell low-selling categories** (e.g., Beauty) through bundles or promotional discounts.  
+
 
 
 
 ---
 
-## Key Insights
-* Top Category: Clothing generated the highest profit (₦143K) and quantity sold (1,780 units).
-* Top selling category: Electronic made highest sales (₦311K).
-
-* Sales Timing: Evening accounted for ₦572K in sales – the most profitable time shift.
-
-* Demographics: Age group 18–35 drove the highest revenue (₦366K).
-
-* Monthly Trend: Sales and profit spiked from September onward, indicating seasonal demand.
-
----
-
-##  Recommendations
-
-* Boost Evening Sales: Run more promotions in evening hours since they drive most sales.
-
-* Target Younger Customers: Offer loyalty rewards for 18–35 age group — they generate the most revenue.
-
-* Promote High-Margin Categories: Focus marketing on Clothing & Electronic products to sustain profit growth.
-
-* Plan for Seasonal Promotion: Prepare stock ahead of September–December to maximize sales.
-*Upsell in Low-Quantity Categories: Encourage bundles or discounts for categories with lower quantity sold(Beauty).
----
-
-## 🛠 Tools & Skills
-
-**SQL,
-Power BI , 
-Data cleaning, 
-EDA, 
-Dashboard design, 
-Data storytelling**
-
----
-
-
-
-
+## 📬 Contact  
+For collaboration or feedback:  
+**LinkedIn:** https://www.linkedin.com/in/arafah-a-lawal  
 
