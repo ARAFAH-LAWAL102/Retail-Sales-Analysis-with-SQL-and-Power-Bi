@@ -3,7 +3,7 @@
 # Retail Store Sales Performance Analysis – SQL + Power BI
 
 ## 📌 Project Overview  
-This project analyzes retail sales performance using **SQL** for data cleaning and exploration, and **Power BI** for interactive dashboard reporting. The goal is to uncover trends in sales, profit, customer behavior, product performance, and seasonal patterns to support business decisions.
+This project analyzes retail sales performance using **SQL** for data cleaning and exploration, and **Power BI** for interactive dashboard reporting. The goal is to uncover trends in sales, profit, customer behavior, product performance, and seasonal patterns to support business decisions. [Interact with Dashboard](https://app.powerbi.com/view?r=eyJrIjoiNjFiNmMzNGUtMWE5Mi00YzY3LTk5YmMtYTZiOGE2MzdjOTVhIiwidCI6Ijc5YTVkMDZiLTEzZmItNDdjMy1iYWY0LWQyNGIyMjcwOTg0YyJ9)
 
 ---
 
